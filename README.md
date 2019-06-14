@@ -42,6 +42,9 @@ make
 2、如果在redhat6.4_64系统中make失败，找不到openssl/aes.h头文件
 解决方法：编译openssl-1.1.0e.tar.gz完成后，将头文件文件夹openssl-1.1.0复制到/usr/include/ ，创建软链接 ln -sf openssl-1.1.0 openssl 
 		  将libssl.so.1.1、libcrypto.so.1.1文件复制到/usr/lib64 ，创建软链接 ln -sf libcrypto.so.1.1 libcrypto.so ; ln -sf libcrypto.so.1.1 libcrypto.so.11 ; ln -sf libssl.so.1.1 libssl.so ; ln -sf libssl.so.1.1 libssl.so.11
+3、在树莓派centos7_32系统中make失败，找不到openssl/aes.h头文件
+解决方法：系统自带了/usr/lib/libcrypto.so.1.0.2k库，但是没有头文件，将openssl0.9.8文件夹复制到/usr/include/ ，创建软链接 ln -sf openssl0.9.8/openssl/ openssl ; cd /usr/lib ; ln -sf libcrypto.so.1.0.2k libcrypto.so
+	      这样编译成功后edge将链接到/usr/lib/libcrypto.so.10
 		  
 		  
 启动n2n：
