@@ -60,6 +60,7 @@ make
 点击安装n2nguien.exe，安装目录为 C:\Program Files\n2n Gui\，
 使用VS2013编译 \n2n\n2n_v2\win32\DotNet 生成Release\edge.exe， 删除“C:\Program Files\n2n Gui\edge2.exe”文件并将生成的edge.exe改名为edge2.exe复制到这里，后续可以通过n2n Gui启动V2模式，
 进程管理器后台可以看到： "C:\Program Files\n2n Gui\edge2.exe" -a 10.0.0.101 -c mynetwork -k keystr -l 114.114.114.114:10000
+如果该Windows电脑没有安装openvpn，打开n2n Gui时会提示错误，安装openvpn-install-2.3.10-I601-x86_64.exe即可；
 
 
 在 n2n\n2n_v2\build 目录下 edge2.exe为win7系统编译的节点程序； edge 为树莓派centos7_armv7l编译的节点程序； supernode 为183服务器上编译的中心节点程序，redhat6.5_64bit
