@@ -65,7 +65,34 @@ make
 
 在 n2n\n2n_v2\build 目录下 edge2.exe为win7系统编译的节点程序； edge 为树莓派centos7_armv7l编译的节点程序； supernode 为183服务器上编译的中心节点程序，redhat6.5_64bit
 
+在自启动脚本中添加：
+DIR=/usr/scanserver
+n2n_ip_FILE=$DIR/cf.d/n2n_ip
 
+    #如果n2n edge未启动，则开启运行
+    N=a`ps -C edge | grep -v CMD`b
+    if [ "${N}" != "ab" ] ; then
+        echo "n2n edge exists."
+    else
+        if [ ! -f $n2n_ip_FILE ]; then 
+            echo "n2n edge file $n2n_ip_FILE cannot find!"
+        else
+            echo "n2n edge read $n2n_ip_FILE file."
+            Linenum=0
+            cat $n2n_ip_FILE | while read myline
+            do
+                Linenum=$(($Linenum+1))
+                if [ $Linenum -eq 1 ]; then
+                    echo "n2n local ip:"$myline
+                    $DIR/bin/edge -d n2n0 -c mynetwork -k keystr -a $myline -l 114.114.114.114:10000 >/dev/null &
+                fi
+            done
+        fi
+    fi
+
+n2n_ip文件内容为, ip可修改：
+10.0.0.1
+#sh read line, this line needed
 
 
 
